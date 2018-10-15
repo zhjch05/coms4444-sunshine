@@ -67,6 +67,25 @@ public class Player implements sunshine.sim.Player {
 
     public void init(List<Point> bales, int n, double m, double t) {
         this.bales = bales;
+        float division = m/11.0;
+        int numSorted = 0;
+        while(numSorted < bales.size()) {
+            Point bale = bales.get(numSorted);
+            int x_block = Math.round(bale.x/division);
+            int y_block = Math.random(bale.y/division);
+
+            for (int i = 0; i < bales.size; i++ ) {
+                Point bale = List.get(i);
+                numSorted++;
+        }
+        while 
+        System.out.println("Number of groups of 11: " + bales.size()/11);
+        int groupsPerTrailer = (bales.size()/11)/n;
+        System.out.println(groupsPerTrailer);
+        for (int i = 0; i < groupsPerTrailer; i++) {
+
+        }
+        System.out.println(groupsPerBale);
         todo = new ArrayList<Point>();
         Collections.sort(bales, new EuclideanDescComparator());
         this.num = n;
