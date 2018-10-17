@@ -11,6 +11,7 @@ public class Cluster {
 
     public List<Point> nodes;
     public Point center;
+    public boolean greedy;
 
     public Point naiveCenter() {
         double x = 0.0d, y = 0.0d;
@@ -142,6 +143,30 @@ public class Cluster {
 //            this.center = naiveCenter();
             this.center = SGDCenter(writer);
             writer.close();
+
+            //whether greedy
+            final Point origin = new Point(0.0d, 0.0d);
+            //greedy time
+            double greedyTime = 0.0d;
+
+            double sum=0.0d;
+            for(Point node:nodes){
+                sum+=Euclidean(node, origin);
+            }
+            greedyTime = (sum/10 + 11*10)*2;
+
+            //cluster time
+            double clusterTime = 0.0d;
+            sum=0.0d;
+            for(Point node:nodes){
+                sum+=Euclidean(node, this.center);
+            }
+            clusterTime+=60+Euclidean(this.center, origin)/2+60+sum+60+11*20*2;
+
+            if(greedyTime<clusterTime){
+                this.greedy = true;
+            }
+            else this.greedy = false;
         }
     }
 

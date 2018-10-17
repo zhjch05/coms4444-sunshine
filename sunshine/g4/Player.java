@@ -438,6 +438,8 @@ public class Player implements sunshine.sim.Player {
         for (int i = 1; i < k+1 && i < inputBales.size(); i++) {
             result.add(inputBales.get(i));
         }
+        Cluster resultCluster = new Cluster(result, null);
+        if (resultCluster.greedy)return null;
         return new Cluster(result, null);
     }
 
